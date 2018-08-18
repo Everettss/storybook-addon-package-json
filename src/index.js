@@ -1,1 +1,3 @@
-export { withPackageJson } from "./preview";
+import { withPackageJson } from "./preview";
+
+export default withPackageJson;

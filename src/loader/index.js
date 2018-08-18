@@ -12,13 +12,10 @@ function transform(source) {
   }
 
   const packageJsonFileContent = getPackageJson(this.resourcePath);
-  const sourceJson = JSON.stringify(packageJsonFileContent)
-    .replace(/\u2028/g, "\\u2028")
-    .replace(/\u2029/g, "\\u2029");
 
   return `
-  var withPackageJson = require('storybook-addon-package-json').withPackageJson;
-  var __PACKAGE_JSON__ = ${sourceJson};
+  var withPackageJson = require('storybook-addon-package-json');
+  var __PACKAGE_JSON__ = ${packageJsonFileContent};
   
   ${result.source}
   `;

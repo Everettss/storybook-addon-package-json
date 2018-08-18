@@ -9,9 +9,22 @@ function setPackageJson(context, packageJson) {
   });
 }
 
+let storyName = "";
+
 export function withPackageJson(packageJson) {
   return (story, context) => {
-    setPackageJson(context, packageJson);
+    const newStoryName = context.kind + context.story;
+
+    if (newStoryName === storyName) {
+      return story();
+    }
+
+    storyName = newStoryName;
+
+    const sourceJson = JSON.stringify(packageJson, null, 2)
+      .replace(/\u2028/g, "\\u2028")
+      .replace(/\u2029/g, "\\u2029");
+    setPackageJson(context, sourceJson);
     return story();
   };
 }
