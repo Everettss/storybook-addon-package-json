@@ -1,6 +1,6 @@
 # Storybook package.json Addon
 
-[![npm version][1]][2] 
+[![npm version][1]][2]
 
 Display the closest `package.json` file to the story. Mainly useful when you use storybook with lerna.
 
@@ -32,7 +32,6 @@ With this `storybook-addon-package-json` stories will have a tab containing thei
 
 ![package.json demo](usage-story.png)
 
-
 ## Installation
 
 First, install the addon
@@ -44,7 +43,7 @@ npm install -D storybook-addon-package-json
 Add this line to your `addons.js` file
 
 ```js
-import 'storybook-addon-package-json/register';
+import "storybook-addon-package-json/register";
 ```
 
 Use this hook to a custom webpack.config. This will generate a decorator call in every story:
@@ -57,12 +56,12 @@ module.exports = {
         test: /\.stories\.jsx?$/,
         use: [
           {
-            loader: require.resolve('storybook-addon-package-json/loader'),
-          },
-        ],
-      },
-    ],
-  },
+            loader: require.resolve("storybook-addon-package-json/loader")
+          }
+        ]
+      }
+    ]
+  }
 };
 ```
 
@@ -78,17 +77,17 @@ module.exports = {
         test: /\.stories\.jsx?$/,
         use: [
           {
-            loader: require.resolve('storybook-addon-package-json/loader'),
+            loader: require.resolve("storybook-addon-package-json/loader")
           },
           {
-            loader: require.resolve('@storybook/addon-storysource/loader'),
+            loader: require.resolve("@storybook/addon-storysource/loader")
           }
-        ],
-      },
-    ],
-  },
+        ]
+      }
+    ]
+  }
 };
 ```
 
-[1]: https://img.shields.io/npm/v/puppeteer-har.svg?style=flat-square
+[1]: https://img.shields.io/npm/v/storybook-addon-package-json.svg?style=flat-square
 [2]: https://npmjs.org/package/storybook-addon-package-json
