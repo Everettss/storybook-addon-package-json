@@ -32,7 +32,7 @@ With this `storybook-addon-package-json` stories will have a tab containing thei
 
 ![package.json demo](usage-story.png)
 
-## Installation
+## Installation and usage
 
 First, install the addon
 
@@ -46,7 +46,9 @@ Add this line to your `addons.js` file
 import "storybook-addon-package-json/register";
 ```
 
-Use this hook to a custom webpack.config. This will generate a decorator call in every story:
+### a) as a webpack loader
+
+Use this hook to a custom webpack.config. This will generate a decorator call in every story and aromatically search for `package.json`:
 
 ```js
 module.exports = {
@@ -65,9 +67,27 @@ module.exports = {
 };
 ```
 
+### b) as a decorator in story
+
+It is possible to inject custom `package.json` to story without configuring `storybook-addon-package-json/loader`:
+
+```js
+import React from "react";
+import { storiesOf } from "@storybook/react";
+import withPackageJson from "storybook-addon-package-json";
+import packageJson from "./package.json";
+
+const stories = storiesOf("Example", module).addDecorator(
+  withPackageJson(packageJson)
+);
+stories.add("default", () => <div>story example</div>);
+```
+
+You can always use custom decorator and loader - when both are used `package.json` from decorator will be used.
+
 ## Usage with `@storybook/addon-storysource`
 
-Since this package modifies original story source code, you have to use `@storybook/addon-storysource/loader` before `storybook-addon-package-json/loader`:
+Since this package modifies original story source code, you should to use `@storybook/addon-storysource/loader` before `storybook-addon-package-json/loader`:
 
 ```js
 module.exports = {
