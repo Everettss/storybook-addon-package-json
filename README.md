@@ -48,7 +48,7 @@ import "storybook-addon-package-json/register";
 
 ### a) as a webpack loader
 
-Use this hook to a custom webpack.config. This will generate a decorator call in every story and aromatically search for `package.json`:
+Use this hook to a custom webpack.config. This will generate a decorator call in every story and automatically search for `package.json`:
 
 ```js
 module.exports = {
