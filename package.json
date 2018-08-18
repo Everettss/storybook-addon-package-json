@@ -26,9 +26,11 @@
   ],
   "main": "dist/index.js",
   "scripts": {
-    "precommit": "lint-staged",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "prepublish": "rollup -c"
+    "precommit": "lint-staged",
+    "prepublish": "rollup -c",
+    "release": "corp-semantic-release --pre-commit update-version-package-lock",
+    "update-version-package-lock": "git add package-lock.json && echo"
   },
   "dependencies": {
     "acorn": "^5.5.3",
@@ -46,6 +48,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "commitlint": "^7.0.0",
+    "corp-semantic-release": "^6.4.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.2",
     "prettier": "^1.14.2",
