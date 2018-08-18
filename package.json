@@ -27,6 +27,7 @@
   "main": "dist/index.js",
   "scripts": {
     "precommit": "lint-staged",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
     "prepublish": "rollup -c"
   },
   "dependencies": {
@@ -40,9 +41,14 @@
     "sort-package-json": "^1.15.0"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^7.0.1",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "commitlint": "^7.0.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
+    "prettier": "^1.14.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "rollup": "^0.64.1",
@@ -53,6 +59,11 @@
     "@storybook/addons": "^3.3.0",
     "react": "*",
     "react-dom": "*"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "lint-staged": {
     "*.{js,json,css,md}": [
