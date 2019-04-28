@@ -8,7 +8,9 @@ export function register() {
     const channel = addons.getChannel();
     addons.addPanel(PANEL_ID, {
       title: PANEL_TITLE,
-      render: () => <StoryPanel channel={channel} api={api} />
+      render: ({ active }) => (
+        <StoryPanel channel={channel} api={api} active={active} />
+      )
     });
   });
 }

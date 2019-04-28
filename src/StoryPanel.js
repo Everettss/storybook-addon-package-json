@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import json from "react-syntax-highlighter/languages/prism/json";
-import { darcula } from "react-syntax-highlighter/styles/prism";
-import SyntaxHighlighter, {
-  registerLanguage
-} from "react-syntax-highlighter/prism-light";
+import { registerLanguage } from "react-syntax-highlighter/prism-light";
 import { EVENT_ID } from "./env";
+
+import { styled } from "@storybook/theming";
+import { SyntaxHighlighter } from "@storybook/components";
+
+const StyledSyntaxHighlighter = styled(SyntaxHighlighter)(({ theme }) => ({
+  fontSize: theme.typography.size.s2 - 1
+}));
 
 registerLanguage("json", json);
 
@@ -25,14 +29,13 @@ export default class StoryPanel extends Component {
   }
 
   render() {
+    const { active } = this.props;
+
+    if (!active) return null;
     return (
-      <SyntaxHighlighter
-        language="json"
-        style={darcula}
-        customStyle={{ width: "100%" }}
-      >
+      <StyledSyntaxHighlighter language="json" padded>
         {this.state.packageJson}
-      </SyntaxHighlighter>
+      </StyledSyntaxHighlighter>
     );
   }
 }
